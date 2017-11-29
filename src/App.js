@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux'
+import { Field, reduxForm, reset } from 'redux-form';
+import _ from 'lodash';
 
 class App extends Component {
   render() {
@@ -11,4 +12,13 @@ class App extends Component {
   }
 }
 
-export default App;
+let form = reduxForm({
+  form: 'New Post'
+})(App);
+
+form = connect(state => ({
+  posts: state.posts
+}), {})(form);
+
+export default form;
+
